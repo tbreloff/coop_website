@@ -34,7 +34,7 @@
         }
         .choice { background-color: #CCC; }
         .choice:hover { background-color: #C66; }
-        .choice_selected { background-color: #6C6; }
+        .choice:active { background-color: #C00; }
         #about-content { display: inherit; }
         #contact-content { text-align: left; }
     </style>
@@ -95,37 +95,43 @@
                     and some of our co-op parents.</li></ul></li>
                 <li>We will have play visits in April, to give us a chance to continue to get to know each other.</li>
                 <li>We hope to have commitments from new families by May.</li>
-                <li>Email us at: <a href="mailto:info@butlerstcoop.com">info@butlerstcoop.com</a></li></ul>
+                <li>Email us at: <a href="mailto:info@butlerstreetcoop.com">info@butlerstreetcoop.com</a></li></ul>
             </div>
         </div>
     </div>
 
     <script>
-    $(document).ready(function() {
-        // define what happens if we click a choice
-        var curr = "#about-content";
-        $(".choice").click(function() { 
-            console.log(this.id); 
 
+    $(document).ready(function() {
+        var curr = "#about-content";
+        var handleClick = function() {
             // hide/show content
             var newchoice = "#" + this.id.split("-")[0] + "-content";
-            $(curr).hide();
-            $(newchoice).show();
-            curr = newchoice;
-            //var w = $(curr).width();
-            //$(curr).animate({width: 0}, 500, function() {
-            //        $(curr).hide();   
-            //        $(newchoice).width(0);
-            //        $(newchoice).show();
-            //        $(newchoice).animate({width: w}, 500);
-            //        curr = newchoice;
-            //    });
+            if (newchoice == curr)
+                return;
 
-            // set css class
-            $(".choice").removeClass("choice_selected").addClass("choice");
-            $(this.id).removeClass("choice").addClass("choice_selected");
-        });
+            if (true)
+            {
+                $(curr).animate({opacity: 0}, 500, function() {
+                        $(curr).hide();   
+                        $(newchoice).css({opacity: 0});
+                        $(newchoice).show();
+                        $(newchoice).animate({opacity: 1}, 500);
+                        curr = newchoice;
+                    });
+            }
+            else
+            {
+                $(curr).hide();
+                $(newchoice).show();
+                curr = newchoice;
+            }
+        };
+        
+        $(".choice").click(handleClick);
+        $(".choice").on("touchstart", handleClick);
     });
+
     </script>
 
 </body>
