@@ -1,28 +1,132 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Butler Street Coop</title>
+    <title>Butler Street Co-op</title>
     <style type="text/css">
         body { 
-            background-color: #CCC; 
-            text-align: center; 
+            background-color: #FFF; 
         }
         #header { 
-            max-width: 500px; 
-            border: thick dotted; 
+            width: 50em; 
+            border-bottom: thin solid; 
             margin: 0 auto; 
         }
         #main {
-            max-width: 700px; 
-            border: thick dotted; 
+            width: 50em; 
             margin: 0 auto; 
         }
+        #choices { 
+            float: left; 
+            width: 8em; 
+        }
+        #content_holder { float: left; width: 42em; }
+        .content { 
+            padding: 0.5em 1em; 
+            display: none;
+            text-align: justify;
+        }
+        .choice, .choice_selected {
+            text-align: center;
+            margin: 0.5em;
+            border-radius: 0.3em;
+            cursor: default;
+            padding: 0.3em 0.6em;
+        }
+        .choice { background-color: #CCC; }
+        .choice:hover { background-color: #C66; }
+        .choice_selected { background-color: #6C6; }
+        #about-content { display: inherit; }
+        #contact-content { text-align: left; }
     </style>
     <!--<meta charset="utf-8" />-->
     <script src="jquery-1.7.1.min.js"></script>
 </head>
 <body>
-    <div id="header"><h2>Butler Street Coop</h2></div>
+    <div id="header"><h2>Butler Street Co-op</h2></div>
+    <div id="main">
+        <div id="choices">
+            <div id="about-choice" class="choice">About</div>
+            <div id="goals-choice" class="choice">Goals</div>
+            <div id="contact-choice" class="choice">Contact</div>
+        </div>
+        <div id="content_holder">
+            <div id="about-content" class="content">
+                <img src="images/coop_group.jpg" align="right" width=320 height=212 hspace=20>
+                The Butler Street Cooperative Preschool was formed in 2012 by a group of seven families.  
+                In our first year, we have offered a 2s program, held in the garden apartment in the home of one of our families.  
+                Our seven children meet three mornings a week, independent of their caregivers and under the guidance of a head teacher, 
+                assisted by parents who have rotated as assistant teachers. <br><br>
+                Our teacher has an MA in Early Childhood and Elementary 
+                Education as well as certification in Infant/Toddler Montessori education, and our classroom has reflected her eclectic 
+                approach to teaching preschoolers.  The learning environment is significantly influenced by Montessori principals and 
+                also mindful of social and emotional development as well as creative exploration and play.  Our mission has been to 
+                create a playful, safe, intentional environment for our kids.  We are all working towards nurturing independent, 
+                curious children who love learning and will grow to understand how to navigate being social, empathic, and autonomous people.
+            </div>
+            <div id="goals-content" class="content">
+                <img src="images/coop_3.jpg" align="right" width=320 height=239 hspace=20>
+                For the upcoming academic year (2013-2014), we are planning to grow our school to include both a 2s and a 3s program.  
+                After careful debate, we have decided to expand our mission to focus not only on creating a nurturing space for our own kids, 
+                but to contribute to our community another, more permanent establishment for early childhood education.  We are seeking new 
+                families to join us in this effort.  The details of next year&apos;s Butler Street Co-op are as follows:
+
+                <ul>
+                <li> Each class will have between 7 and 10 children and two teachers.  </li>
+                <li>The 2s group: 
+                <ul><li>will meet Tuesday-Thursday, 830am-11am (following a phase-in period to allow adjustment to separating from caregivers)</li>
+                <li>will be for children born in 2011 (with an option to open to Jan-early March 2012)</li>
+                </ul></li>
+                <li>The 3s group:
+                <ul><li>will meet Monday-Thursday, 9am-12pm</li>
+                <li>will be for children born in 2010 </li>
+                </ul></li>
+                <li>We will relocate to a space at 47 Bergen Street, which we will sublet from the new tenant there, Beam Camp&apos;s afterschool program.</li>
+                <li>Our high estimate is that monthly costs will run between $800-950 per family.  The closer we get to 10 children/classroom, the 
+                lower these costs become.</li>
+                <li>Legally, we will operate as a co-operative.  All duties (besides teaching) will be performed by parents of the co-op, who will 
+                commit to various committees or roles.</li>
+                </ul>
+            </div>
+            <div id="contact-content" class="content">
+                <img src="images/gi_1.jpg" align="right" width=224 height=300 hspace=20>
+                HOW TO LEARN MORE:
+                <ul><li>We will be holding two information sessions, on March 11th and April 10th.  
+                    <ul><li>These will be held in our current classroom space and attended by our current head teacher 
+                    and some of our co-op parents.</li></ul></li>
+                <li>We will have play visits in April, to give us a chance to continue to get to know each other.</li>
+                <li>We hope to have commitments from new families by May.</li>
+                <li>Email us at: <a href="mailto:info@butlerstcoop.com">info@butlerstcoop.com</a></li></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        // define what happens if we click a choice
+        var curr = "#about-content";
+        $(".choice").click(function() { 
+            console.log(this.id); 
+
+            // hide/show content
+            var newchoice = "#" + this.id.split("-")[0] + "-content";
+            $(curr).hide();
+            $(newchoice).show();
+            curr = newchoice;
+            //var w = $(curr).width();
+            //$(curr).animate({width: 0}, 500, function() {
+            //        $(curr).hide();   
+            //        $(newchoice).width(0);
+            //        $(newchoice).show();
+            //        $(newchoice).animate({width: w}, 500);
+            //        curr = newchoice;
+            //    });
+
+            // set css class
+            $(".choice").removeClass("choice_selected").addClass("choice");
+            $(this.id).removeClass("choice").addClass("choice_selected");
+        });
+    });
+    </script>
 
 </body>
 </html>
